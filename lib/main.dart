@@ -1,0 +1,17 @@
+import "package:demo_navigation_rail_system/dependency_injector.dart";
+import "package:demo_navigation_rail_system/navigation/router.dart";
+import "package:flutter/material.dart";
+
+void main() {
+  runApp(
+    DependencyInjector(
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          brightness: Brightness.dark,
+        ),
+        routerConfig: routerConfig,
+      ),
+    ),
+  );
+}
