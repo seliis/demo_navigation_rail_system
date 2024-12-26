@@ -3,6 +3,9 @@ import "package:demo_navigation_rail_system/ui/master_screen.dart";
 import "package:go_router/go_router.dart";
 
 final routerConfig = GoRouter(
+  errorPageBuilder: (context, state) {
+    return NoTransitionPage(child: views.NotFound());
+  },
   initialLocation: "/",
   routes: [
     ShellRoute(
