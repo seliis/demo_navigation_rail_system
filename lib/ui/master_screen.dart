@@ -1,8 +1,8 @@
 import "package:demo_navigation_rail_system/ui/master_navigator.dart";
 import "package:flutter/material.dart";
 
-final class Home extends StatelessWidget {
-  const Home({
+final class MasterScreen extends StatelessWidget {
+  const MasterScreen({
     super.key,
     required this.child,
   });

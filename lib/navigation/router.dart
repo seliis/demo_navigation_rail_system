@@ -1,9 +1,10 @@
 import "package:demo_navigation_rail_system/ui/views/_index.dart" as views;
-import "package:demo_navigation_rail_system/ui/home.dart";
+import "package:demo_navigation_rail_system/ui/master_screen.dart";
 import "package:go_router/go_router.dart";
 
 enum Address {
-  first(route: views.FirstView.route);
+  home(route: views.Home.route),
+  user(route: views.User.route);
 
   const Address({
     required this.route,
@@ -13,23 +14,23 @@ enum Address {
 }
 
 final routerConfig = GoRouter(
-  initialLocation: views.FirstView.route,
+  initialLocation: views.Home.route,
   routes: [
     ShellRoute(
       builder: (context, state, child) {
-        return Home(child: child);
+        return MasterScreen(child: child);
       },
       routes: [
         GoRoute(
-          path: views.FirstView.route,
+          path: views.Home.route,
           pageBuilder: (context, state) {
-            return NoTransitionPage(child: const views.FirstView());
+            return NoTransitionPage(child: const views.Home());
           },
         ),
         GoRoute(
-          path: views.SecondView.route,
+          path: views.User.route,
           pageBuilder: (context, state) {
-            return NoTransitionPage(child: const views.SecondView());
+            return NoTransitionPage(child: const views.User());
           },
         ),
       ],
