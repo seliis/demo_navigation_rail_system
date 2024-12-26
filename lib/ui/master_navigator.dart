@@ -1,32 +1,47 @@
-import "package:demo_navigation_rail_system/presenter/master_navigator_presenter.dart";
-import "package:demo_navigation_rail_system/navigation/router.dart";
-import "package:flutter_bloc/flutter_bloc.dart";
-import "package:go_router/go_router.dart";
 import "package:flutter/material.dart";
+import "package:go_router/go_router.dart";
 
-final class MasterNavigator extends StatelessWidget {
+final class MasterNavigator extends StatefulWidget {
   const MasterNavigator({super.key});
 
   @override
-  Widget build(context) {
-    final presenter = context.watch<MasterNavigatorPresenter>();
+  State<MasterNavigator> createState() => _MasterNavigatorState();
+}
 
+final class _MasterNavigatorState extends State<MasterNavigator> {
+  int index = 0;
+
+  @override
+  Widget build(context) {
     return NavigationRail(
-      labelType: NavigationRailLabelType.all,
-      selectedIndex: presenter.state.index,
-      onDestinationSelected: (index) {
-        context.go(Address.values[index].route);
-        presenter.setIndex(index);
+      selectedIndex: index,
+      onDestinationSelected: (value) {
+        setState(() {
+          index = value;
+        });
+        _buildPage();
       },
-      destinations: Address.values.map(
-        (address) {
-          return NavigationRailDestination(
-            icon: Icon(Icons.folder),
-            selectedIcon: Icon(Icons.folder_open),
-            label: Text(address.route),
-          );
-        },
-      ).toList(),
+      destinations: [
+        NavigationRailDestination(
+          icon: Icon(Icons.home),
+          label: Text("Home"),
+        ),
+        NavigationRailDestination(
+          icon: Icon(Icons.person),
+          label: Text("User"),
+        ),
+      ],
     );
+  }
+
+  void _buildPage() {
+    switch (index) {
+      case 0:
+        context.go("/");
+      case 1:
+        context.go("/user");
+      default:
+        context.go("/");
+    }
   }
 }
