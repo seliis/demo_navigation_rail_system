@@ -8,7 +8,7 @@ void main() {
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          brightness: Brightness.dark,
+          brightness: Brightness.light,
         ),
         routerConfig: routerConfig,
       ),

@@ -1,6 +1,4 @@
-import "package:demo_navigation_rail_system/ui/master_navigator.dart";
 import "package:flutter/material.dart";
-import "package:flutter_bloc/flutter_bloc.dart";
 
 final class DependencyInjector extends StatelessWidget {
   const DependencyInjector({
@@ -27,13 +25,6 @@ final class _Provider extends StatelessWidget {
 
   @override
   Widget build(context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<MasterNavigatorCubit>(
-          create: (context) => MasterNavigatorCubit(),
-        ),
-      ],
-      child: child,
-    );
+    return child;
   }
 }
